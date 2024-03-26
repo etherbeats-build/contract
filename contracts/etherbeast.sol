@@ -56,19 +56,6 @@ contract EtherBeast is ERC404, Pausable {
         _usedNonce[signer]++;
         _;
     }
-    // TO BE DELETED
-    function verifySigner(
-        uint256 nonce,
-        uint256 amount,
-        bytes memory signature
-    ) public pure returns (address) {
-        bytes32 _messageHash = keccak256(abi.encodePacked(amount, nonce));
-        bytes32 message = keccak256(
-            abi.encodePacked("\x19Ethereum Signed Message:\n32", _messageHash)
-        );
-        address recoveredAddress = recoverSigner(message, signature);
-        return recoveredAddress;
-    }
 
     function recoverSigner(
         bytes32 message,
